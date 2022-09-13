@@ -1,0 +1,29 @@
+Bước 1:
+các thực thể (Entity):
+NHACC
+DOnDH
+VATTU
+PHIEUNHAP
+PHIEUXUAT
+
+Bước 2:
+_xác định mối quan hệ(Relationship)
++1-n: NHACC và DONDH 
++n-n PHIEUXUAT và VATTU, VATTU và DONDH, VATTU và PHIEUNHAP
+
+Bước 3:
+_xác định các thuộc tính đa trị và tạo thành bảng mới
++Thuộc tính đa trị là số điện thoại => Tạo bảng mới
++Các bảng mới được tạo thành là:
+.Chi tiết phiếu xuất:bảng được tạo ra từ quan hệ n-n của bảng
+.PHIEUXUAT VS VATTU
+.Chi tiết đơn đặt hàng: bảng được tạo ra từ quan hệ n-n của bảng
+.VATTU VS DONDH
+.Chi tiết phiếu xuất: bảng được tạo ra từ quan hệ n-n của bảng
+VATTU VS PHIEUNHAP
+
+
+
+Bước 4: Liệt kê các bảng cần tạo:
+NHACC, SDTNHACC, VATTU, DONDH, CTDONDH, PHIEUNHAP, CTPHIEUNHAP
+PHIEUXUAT, CTPHIEUXUAT
