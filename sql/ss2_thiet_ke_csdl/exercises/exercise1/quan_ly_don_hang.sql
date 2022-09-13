@@ -51,6 +51,7 @@ foreign key(ma_nha_cung_cap) references nha_cung_cap(ma_nha_cung_cap)
 );
 
 create table so_dien_thoai (
+id_sdt INT PRIMARY KEY,
 so_dien_thoai varchar(50),
 ma_nha_cung_cap int,
 foreign key(ma_nha_cung_cap) references nha_cung_cap(ma_nha_cung_cap)
