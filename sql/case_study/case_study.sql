@@ -185,7 +185,7 @@ INNER JOIN loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
 WHERE (loai_khach.ten_loai_khach="Diamond") GROUP BY hop_dong.ma_khach_hang ORDER BY so_lan_dat_phong ;
 
 -- task5
-SELECT khach_hang.ma_khach_hang,khach_hang.ho_ten,loai_khach.ten_loai_khach, hop_dong.ma_hop_dong, dich_vu.ten_dich_vu, hop_dong.ngay_lam_hop_dong,hop_dong.ngay_ket_thuc, (ifnull(dich_vu.chi_phi_thue,0)+ ifnull(hop_dong_chi_tiet.so_luong,0)*ifnull(dich_vu_di_kem.gia,0)) as tong_tien
+SELECT khach_hang.ma_khach_hang,khach_hang.ho_ten,loai_khach.ten_loai_khach, hop_dong.ma_hop_dong, dich_vu.ten_dich_vu, hop_dong.ngay_lam_hop_dong,hop_dong.ngay_ket_thuc, (ifnull(dich_vu.chi_phi_thue,0)+ SUM(ifnull(hop_dong_chi_tiet.so_luong,0)*ifnull(dich_vu_di_kem.gia,0))) as tong_tien
 FROM khach_hang
 JOIN loai_khach ON khach_hang.ma_loai_khach = loai_khach.ma_loai_khach 
 LEFT JOIN hop_dong ON khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
@@ -255,6 +255,19 @@ WHERE hop_dong.ngay_lam_hop_dong BETWEEN '2020-10-01' AND '2020-12-31') AND hop_
 SELECT hop_dong.ma_hop_dong FROM hop_dong
 WHERE hop_dong.ngay_lam_hop_dong BETWEEN '2021-01-01' AND '2021-06-31')
 GROUP BY hop_dong.ma_hop_dong;
+
+-- task 13
+CREATE VIEW demo AS
+SELECT dich_vu_di_kem.ma_dich_vu_di_kem as ma_dich_vu_di_kem, dich_vu_di_kem.ten_dich_vu_di_kem as ten_dich_vu_di_kem, SUM(ifnull(hop_dong_chi_tiet.so_luong,0)) as so_luong_dich_vu_di_kem  FROM dich_vu_di_kem 
+JOIN hop_dong_chi_tiet ON hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+GROUP BY hop_dong_chi_tiet.ma_dich_vu_di_kem;
+SELECT demo.ma_dich_vu_di_kem,demo.ten_dich_vu_di_kem, demo.so_luong_dich_vu_di_kem  FROM demo
+ WHERE demo.so_luong_dich_vu_di_kem = (SELECT MAX(demo.so_luong_dich_vu_di_kem) FROM demo)
+ 
+-- task 14
+
+
+
 
 
 
