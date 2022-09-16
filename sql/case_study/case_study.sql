@@ -305,7 +305,7 @@ ORDER BY nhan_vien.ma_nhan_vien;
 
 DELETE FROM nhan_vien
 WHERE NOT EXISTS(SELECT ma_nhan_vien FROM hop_dong
-WHERE ma_nhan_vien = nhan_vien.ma_nhan_vien);
+WHERE ma_nhan_vien = nhan_vien.ma_nhan_vien AND year(hop_dong.ngay_lam_hop_dong) BETWEEN 2019 AND 2021);
 SELECT ma_nhan_vien, ho_ten FROM nhan_vien;
 
 -- task 17
@@ -329,7 +329,7 @@ JOIN demo2 on khach_hang.ma_khach_hang = demo2.ma_khach_hang
 JOIN hop_dong ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
 SET khach_hang.ma_loai_khach =1
 WHERE khach_hang.ma_loai_khach=2 AND khach_hang.ma_khach_hang IN (SELECT demo2.ma_khach_hang FROM demo2 WHERE demo2.tong_tien >1000000
-) AND YEAR(hop_dong.ngay_lam_hop_dong) BETWEEN 2021 AND 2021; 
+) AND YEAR(hop_dong.ngay_lam_hop_dong)=2021; 
 SELECT * FROM khach_hang;
 
 -- task 18
