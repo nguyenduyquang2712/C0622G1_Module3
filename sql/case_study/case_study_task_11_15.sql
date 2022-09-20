@@ -25,10 +25,7 @@ JOIN nhan_vien ON hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
 JOIN khach_hang ON hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
 JOIN dich_vu ON dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
 LEFT JOIN hop_dong_chi_tiet ON hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-WHERE hop_dong.ma_hop_dong IN (
-SELECT hop_dong.ma_hop_dong 
-FROM hop_dong
-WHERE hop_dong.ngay_lam_hop_dong BETWEEN '2020-10-01' AND '2020-12-31') AND hop_dong.ma_hop_dong NOT IN (
+WHERE hop_dong.ngay_lam_hop_dong BETWEEN '2020-10-01' AND '2020-12-31' AND hop_dong.ma_hop_dong NOT IN (
 SELECT hop_dong.ma_hop_dong 
 FROM hop_dong
 WHERE hop_dong.ngay_lam_hop_dong BETWEEN '2021-01-01' AND '2021-06-31')
