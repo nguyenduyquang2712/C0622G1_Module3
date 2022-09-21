@@ -41,7 +41,9 @@ SET khach_hang.ma_loai_khach =1
 WHERE khach_hang.ma_khach_hang IN(
 SELECT ma_khach_hang 
 FROM view2
-WHERE ten_loai_khach = "Platinium" AND year(ngay_lam_hop_dong)=2021 AND tong_tien>1000000);
+WHERE ten_loai_khach = "Platinium" 
+Group by ma_khach_hang
+having sum(tong_tien)>1000000);
 
 SELECT *
  FROM khach_hang;
@@ -95,6 +97,26 @@ JOIN view3 ON view3.ma_dich_vu_di_kem =  dich_vu_di_kem.ma_dich_vu_di_kem
 SET dich_vu_di_kem.gia = dich_vu_di_kem.gia*2
 WHERE view3.so_luong>10;
 SELECT * FROM dich_vu_di_kem;
+
+-- ko dùng view
+
+UPDATE dich_vu_di_kem 
+SET 
+    gia = gia * 2
+WHERE
+    ma_dich_vu_di_kem IN (SELECT 
+            tinh_tong.ma_dich_vu_di_kem
+        FROM
+            (SELECT 
+                hdct.ma_dich_vu_di_kem, SUM(hdct.so_luong) AS tong_so_lan_su_dung
+            FROM
+                hop_dong_chi_tiet hdct
+            JOIN hop_dong hd ON hd.ma_hop_dong = hdct.ma_hop_dong
+            WHERE
+                    YEAR(hd.ngay_lam_hop_dong) = 2020
+            GROUP BY hdct.ma_dich_vu_di_kem
+            HAVING tong_so_lan_su_dung > 10 )
+            as tinh_tong) ;
 
 -- task 20
 -- Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, 

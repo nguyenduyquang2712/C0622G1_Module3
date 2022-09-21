@@ -1,0 +1,16 @@
+div {
+    width: 60%;
+    margin: auto;
+}
+div h1 {
+    border-bottom: 1px solid gray;
+}
+
+span{
+    color: darkblue;
+}
+p{
+    text-align: justify;
+    font-size: 20px;
+    text-indent: 30px;
+}
