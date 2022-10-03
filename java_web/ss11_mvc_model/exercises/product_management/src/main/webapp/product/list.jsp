@@ -8,6 +8,9 @@
             width: 150px;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
 </head>
 <body>
 <h1>Products</h1>
@@ -18,7 +21,7 @@
     <input type="text" name="name">
     <input type="submit" value="Search">
 </form>
-<table border="1">
+<table class="table table-dark">
     <tr>
         <td>Id</td>
         <td>Name</td>
@@ -35,8 +38,8 @@
             <td>${product.getPrice()}</td>
             <td>${product.getDescription()}</td>
             <td>${product.getManufacturer()}</td>
-            <td><a href="/products?action=edit&id=${product.getId()}">edit</a></td>
-            <td><a href="/products?action=delete&id=${product.getId()}">delete</a></td>
+            <td ><button class="btn btn-primary"><a style="color: red" href="/products?action=edit&id=${product.getId()}">edit</a></button></td>
+            <td><button class="btn btn-primary"><a style="color: red" href="/products?action=delete&id=${product.getId()}">delete</a></button></td>
         </tr>
     </c:forEach>
 </table>

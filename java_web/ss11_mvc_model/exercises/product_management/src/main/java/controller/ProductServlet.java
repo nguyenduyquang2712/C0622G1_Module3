@@ -15,9 +15,12 @@ import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
+
     private static IProductService productService = new ProductService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -43,20 +46,14 @@ public class ProductServlet extends HttpServlet {
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
+        if(name.equals("")){
+            listProducts(request, response);
+        }
         List<Product> products = this.productService.findByName(name);
-        if (products.size() == 0) {
-            request.setAttribute("mess", "Not found any product");
+
+            request.setAttribute("products", products   );
             try {
-                request.getRequestDispatcher("product/search.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            request.setAttribute("products", products);
-            try {
-                request.getRequestDispatcher("product/search.jsp").forward(request, response);
+                request.getRequestDispatcher("product/list.jsp").forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -64,7 +61,6 @@ public class ProductServlet extends HttpServlet {
             }
         }
 
-    }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -134,6 +130,8 @@ public class ProductServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -150,8 +148,6 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "view":
                 viewProduct(request, response);
-                break;
-            case "search":
                 break;
             default:
                 listProducts(request, response);

@@ -6,6 +6,7 @@ import service.IProductService;
 import java.util.*;
 
 public class ProductService implements IProductService {
+
     private static Map<Integer, Product> products = new HashMap<>();
 
     static {
@@ -33,7 +34,6 @@ public class ProductService implements IProductService {
     @Override
     public List<Product> findByName(String name) {
         List<Product> productList = new ArrayList<>();
-//        Set<Integer> productSet = products.keySet();
         for (Product product : products.values()) {
             if (product.getName().equals(name)) {
                 productList.add(product);
