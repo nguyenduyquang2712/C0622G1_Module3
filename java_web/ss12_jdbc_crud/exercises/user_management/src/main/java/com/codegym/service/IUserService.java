@@ -17,10 +17,15 @@ public interface IUserService {
     boolean updateUser(User user) throws SQLException;
 
     List<User> findUSerByCountry(String country);
+
     User getUserById(int id);
+
     void insertUserStore(User user) throws SQLException;
+
     List<User> selectAllUsersBySP();
+
     boolean updateUserBySP(User user) throws SQLException;
+
     boolean deleteUserById(int id) throws SQLException;
 
 }
