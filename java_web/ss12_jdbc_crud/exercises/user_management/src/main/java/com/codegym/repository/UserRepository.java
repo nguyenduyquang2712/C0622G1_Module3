@@ -133,7 +133,7 @@ public class UserRepository implements IUserRepsitory {
         users = selectAllUsers();
         List<User> userListFound = new ArrayList<>();
         for (User user : users) {
-            if (user.getCountry().contains(country))
+            if (user.getCountry().equals(country))
                 userListFound.add(user);
         }
         return userListFound;

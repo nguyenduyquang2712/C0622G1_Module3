@@ -22,7 +22,6 @@ public class UserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
@@ -81,6 +80,7 @@ public class UserServlet extends HttpServlet {
         if (country.equals("")) {
             try {
                 listUser(request, response);
+                return;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } catch (IOException e) {
@@ -146,9 +146,15 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
 
-        User book = new User(id, name, email, country);
+        User user = new User(id, name, email, country);
 //        userService.updateUser(book);
-        userService.updateUserBySP(book);
+        boolean check = userService.updateUserBySP(user);
+        String mess = "Edit thành công";
+        if(!check){
+            mess = "Edit không thành công";
+        }
+        request.setAttribute("mess",mess);
+        request.setAttribute("user",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         dispatcher.forward(request, response);
     }

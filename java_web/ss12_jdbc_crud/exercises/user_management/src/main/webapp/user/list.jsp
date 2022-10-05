@@ -11,9 +11,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<center>
-    <h1>User Management</h1>
-    <h2>
+    <h1 style="text-align: center">User Management</h1>
+    <h2 style="text-align: center">
         <a class="btn btn-primary" href="users?action=users">HOME</a>
     </h2>
     <h2>
@@ -21,19 +20,19 @@
     </h2>
     <form action="/users">
         <input type="hidden" name="action" value="search">
-        <input type="text" name="country">
+        <input type="text" name="country" placeholder="...search">
         <input class="btn btn-primary" type="submit" value="Search">
     </form>
 </center>
 <div align="center">
-    <caption><h2>List of Users</h2></caption>
+    <caption><h2>List of Employee</h2></caption>
     <table class="table table-dark table-hover" style="width:100%" border="1" cellpadding="5">
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Country</th>
-            <th>Actions</th>
+            <th>Date_Of_Birth</th>
+            <th>ID_Card</th>
+            <th>Phone</th>
             <th>Actions</th>
         </tr>
         <c:forEach var="user" items="${listUser}">

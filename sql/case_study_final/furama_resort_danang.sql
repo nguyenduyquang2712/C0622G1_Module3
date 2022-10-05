@@ -1,0 +1,1 @@
+SELECT * FROM furama_resort_danang.contract;
