@@ -28,20 +28,20 @@
             <tr>
                 <th>Employee Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" value="test"/>
+                    <input type="text" name="name" id="name" size="45" />
                 </td>
             </tr>
 
             <tr>
                 <th>Employee Date Of Birth:</th>
                 <td>
-                    <input type="text" name="dateofbirth" id="dateofbirth" size="30"/>
+                    <input type="text" name="dateOfBirth" id="dateofbirth" size="30"/>
                 </td>
             </tr>
             <tr>
                 <th>Employee ID Card:</th>
                 <td>
-                    <input type="text" name="idcard" id="idcard" size="30"/>
+                    <input type="text" name="idCard" id="idcard" size="30"/>
                 </td>
             </tr>
             <tr>
@@ -72,6 +72,12 @@
                 <th>Employee Salary:</th>
                 <td>
                     <input type="text" name="salary" id="salary" size="30"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Employee divisionId:</th>
+                <td>
+                    <input type="text" name="divisionId" id="divisionId" size="30"/>
                 </td>
             </tr>
 

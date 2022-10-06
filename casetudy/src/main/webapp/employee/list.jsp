@@ -29,12 +29,12 @@
 </h2>
 <form action="/employee">
     <input type="hidden" name="action" value="search">
-    <input type="text" name="#" placeholder="...search">
+    <input type="text" name="name" placeholder="...search">
     <input class="btn btn-primary" type="submit" value="Search">
 </form>
 <div align="center">
     <caption><h2>List of Employee</h2></caption>
-    <table class="table table-dark table-hover" style="width:100%" border="1" cellpadding="5">
+    <table id="tableemployee" class="table table-dark table-hover" style="width:100%" border="1" cellpadding="5">
         <thead>
         <tr>
             <th>ID</th>
@@ -42,34 +42,37 @@
             <th>Date_Of_Birth</th>
             <th>ID_Card</th>
             <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
             <th>Education_Degree</th>
             <th>Position</th>
+            <th>Division</th>
             <th>Salary</th>
             <th>Action</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <%--        <c:forEach var="user" items="${listUser}">--%>
+                <c:forEach var="employee" items="${employeeList}">
         <tr>
-            <%--                <td><c:out value="${user.id}"/></td>--%>
-            <%--                <td><c:out value="${user.name}"/></td>--%>
-            <%--                <td><c:out value="${user.email}"/></td>--%>
-            <%--                <td><c:out value="${user.country}"/></td>--%>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
-            <td>test</td>
+                            <td><c:out value="${employee.employeeId}"/></td>
+                            <td><c:out value="${employee.employeeName}"/></td>
+                            <td><c:out value="${employee.employeeBirthday}"/></td>
+                            <td><c:out value="${employee.employeeIdCard}"/></td>
+                            <td><c:out value="${employee.employeePhone}"/></td>
+                            <td><c:out value="${employee.employeeEmail}"/></td>
+                            <td><c:out value="${employee.employeeAddress}"/></td>
+                            <td><c:out value="${employee.educationDegreeId}"/></td>
+                            <td><c:out value="${employee.positionId}"/></td>
+                            <td><c:out value="${employee.divisionId}"/></td>
+                            <td><c:out value="${employee.employeeSalary}"/></td>
+
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#edit${1}">
+                        data-bs-target="#edit${employee.employeeId}">
                     Edit
                 </button>
-                <div class="modal fade " id="edit${1}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade " id="edit${employee.employeeId}" tabindex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog ">
                         <div class="modal-content bg-dark">
@@ -79,12 +82,12 @@
                                         aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Bạn có muốn sửa <strong class="text-danger">${2}</strong>
+                                Bạn có muốn sửa <strong class="text-danger">${employee.employeeName}</strong>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                 </button>
-                                <a href="employee?action=edit&id=${1}" class="btn btn-danger">Edit</a>
+                                <a href="employee?action=edit&id=${employee.employeeId}" class="btn btn-danger">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -92,10 +95,10 @@
             </td>
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#delete${1}">
+                        data-bs-target="#delete${employee.employeeId}">
                     Delete
                 </button>
-                <div class="modal fade " id="delete${1}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade " id="delete${employee.employeeId}" tabindex="-1" aria-labelledby="exampleModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog ">
                         <div class="modal-content bg-dark">
@@ -105,20 +108,20 @@
                                         aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                Bạn có muốn xóa <strong class="text-danger">${2}</strong>
+                                Bạn có muốn xóa <strong class="text-danger">${employee.employeeName}</strong>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                 </button>
-                                <a href="employee?action=delete&id=${1}" class="btn btn-danger">Delete</a>
+                                <a href="employee?action=delete&id=${employee.employeeId}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </td>
         </tr>
+                </c:forEach>
         </tbody>
-        <%--        </c:forEach>--%>
     </table>
 </div>
 <script src="jquery/jquery-3.5.1.min.js"></script>
@@ -126,10 +129,10 @@
 <script src="datatables/js/dataTables.bootstrap5.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#tableStudent').dataTable( {
+        $('#tableemployee').dataTable( {
             "dom": 'lrtip',
             "lengthChange": false,
-            "pageLength": 5
+            "pageLength": 5,
         } );
     } );
 </script>

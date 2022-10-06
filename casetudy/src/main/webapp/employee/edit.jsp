@@ -31,50 +31,61 @@
             <tr>
                 <th>Employee Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" value="test"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Employee Email:</th>
-                <td>
-                    <input type="text" name="name" id="email" size="45" value="test"/>
+                    <input type="text" name="name" id="name" size="45" value=${employee.employeeName}/>
                 </td>
             </tr>
             <tr>
                 <th>Employee Employee Date Of Birth:</th>
                 <td>
-                    <input type="text" name="name" id="date" size="45" value="test"/>
+                    <input type="text" name="date" id="date" size="45" value=${employee.employeeBirthday}/>
                 </td>
             </tr>
             <tr>
                 <th>Employee Employee ID Card:</th>
                 <td>
-                    <input type="text" name="name" id="idcard" size="45" value="test"/>
+                    <input type="text" name="idCard" id="idCard" size="45" value=${employee.employeeIdCard}/>
                 </td>
             </tr>
             <tr>
                 <th>Employee Phone:</th>
                 <td>
-                    <input type="text" name="name" id="phone" size="45" value="test"/>
+                    <input type="text" name="phone" id="phone" size="45" value=${employee.employeePhone}/>
                 </td>
             </tr>
-
+            <tr>
+                <th>Employee Email:</th>
+                <td>
+                    <input type="text" name="email" id="email" size="45" value=${employee.employeeEmail}/>
+                </td>
+            </tr>
+            <tr>
+                <th>Employee Address:</th>
+                <td>
+                    <input type="text" name="address" id="address" size="45" value=${employee.employeeAddress}/>
+                </td>
+            </tr>
             <tr>
             <th>Employee Education_Degree:</th>
             <td>
-                <input type="text" name="name" id="education" size="45" value="test"/>
+                <input type="text" name="education" id="education" size="45" value=${employee.educationDegreeId}/>
             </td>
         </tr>
             <tr>
                 <th>Employee Position:</th>
                 <td>
-                    <input type="text" name="name" id="position" size="45" value="test"/>
+                    <input type="text" name="position" id="position" size="45" value=${employee.positionId}/>
                 </td>
             </tr>
             <tr>
                 <th>Employee Salary:</th>
                 <td>
-                    <input type="text" name="name" id="salary" size="45" value="test"/>
+                    <input type="text" name="salary" id="salary" size="45" value=${employee.employeeSalary}/>
+                </td>
+            </tr>
+            <tr>
+                <th>Employee Division:</th>
+                <td>
+                    <input type="text" name="division" id="division" size="45" value=${employee.divisionId}/>
                 </td>
             </tr>
             <tr>

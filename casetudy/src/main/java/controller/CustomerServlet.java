@@ -1,11 +1,14 @@
 package controller;
 
+import model.Employee;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -47,11 +50,17 @@ public class CustomerServlet extends HttpServlet {
             case "delete":
                 break;
             case "search":
+                searchEmployee(request,response);
                 break;
             default:
                 listCustomer(request,response);
                 break;
         }
+    }
+
+    private void searchEmployee(HttpServletRequest request, HttpServletResponse response) {
+
+
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {

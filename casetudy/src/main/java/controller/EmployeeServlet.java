@@ -1,14 +1,21 @@
 package controller;
 
+import model.Employee;
+import service.IEmployeeService;
+import service.impl.EmployeeService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "EmployeeServlet", urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
+    private IEmployeeService iEmployeeService = new EmployeeService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -18,6 +25,7 @@ public class EmployeeServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
+                createEmployee(request, response);
                 break;
             case "edit":
                 break;
@@ -27,6 +35,36 @@ public class EmployeeServlet extends HttpServlet {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void createEmployee(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String dayOfBirth = request.getParameter("dateOfBirth");
+        String idCard = request.getParameter("idCard");
+        double salary = Double.parseDouble(request.getParameter("salary"));
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        int position = Integer.parseInt(request.getParameter("position"));
+        int educationDegree = Integer.parseInt(request.getParameter("education"));
+        int divisionId = Integer.parseInt(request.getParameter("divisionId"));
+        Employee employee = new Employee(name, dayOfBirth, idCard, salary, phone, email, address, position,
+                educationDegree, divisionId);
+        boolean check = iEmployeeService.create(employee);
+        String mess = "Add new Employee successfully.";
+        if (!check) {
+            mess = "Add new Employee failed.";
+        }
+
+        request.setAttribute("mess", mess);
+        request.setAttribute("check", check);
+        try {
+            request.getRequestDispatcher("employee/create.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -45,8 +83,10 @@ public class EmployeeServlet extends HttpServlet {
                 showEditForm(request,response);
                 break;
             case "delete":
+                deleteEmployee(request,response);
                 break;
             case "search":
+                searchEmployee(request,response);
                 break;
             default:
                 listEmployee(request,response);
@@ -54,7 +94,46 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
+    private void searchEmployee(HttpServletRequest request, HttpServletResponse response) {
+        List<Employee> employees = new ArrayList<>();
+        String name = request.getParameter("name");
+        if(name.equals("")){
+            try {
+                response.sendRedirect("/employee");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            employees = iEmployeeService.findEmployeeByName(name);
+            request.setAttribute("employeeList",employees);
+            try {
+                request.getRequestDispatcher("/employee/list.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
+        int idDelete = Integer.parseInt(request.getParameter("id"));
+        boolean check = iEmployeeService.delete(idDelete);
+        String mess = "Delete Employee failed.";
+        if (check) {
+            mess = "Delete Employee successfully.";
+        }
+        request.setAttribute("mess", mess);
+        request.setAttribute("check", check);
+        listEmployee(request,response);
+    }
+
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Employee employee = iEmployeeService.findEmployeeByID(id);
+        request.setAttribute("employee",employee);
         try {
             request.getRequestDispatcher("/employee/edit.jsp").forward(request,response);
         } catch (ServletException e) {
@@ -75,8 +154,10 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void listEmployee(HttpServletRequest request, HttpServletResponse response) {
+        List<Employee> employeeList = iEmployeeService.findAll();
+        request.setAttribute("employeeList",employeeList);
         try {
-            request.getRequestDispatcher("/employee/list.jsp").forward(request,response);
+            request.getRequestDispatcher("employee/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
