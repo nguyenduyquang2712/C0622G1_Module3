@@ -28,6 +28,7 @@ public class EmployeeServlet extends HttpServlet {
                 createEmployee(request, response);
                 break;
             case "edit":
+                updateEmployee(request,response);
                 break;
             case "delete":
                 break;
@@ -35,6 +36,39 @@ public class EmployeeServlet extends HttpServlet {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void updateEmployee(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String dayOfBirth = request.getParameter("date");
+        String idCard = request.getParameter("idCard");
+        double salary = Double.parseDouble(request.getParameter("salary"));
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        int position = Integer.parseInt(request.getParameter("position"));
+        int educationDegree = Integer.parseInt(request.getParameter("education"));
+        int division = Integer.parseInt(request.getParameter("division"));
+
+        Employee employee = new Employee(id, name, dayOfBirth, idCard, salary, phone, email, address, position, educationDegree, division);
+
+        boolean check = iEmployeeService.edit(employee);
+        Employee newEmployee = iEmployeeService.findEmployeeByID(id);
+        request.setAttribute("employee",newEmployee);
+        String mess = "Update Employee successfully.";
+
+        if (!check) {
+            mess = "Update Employee failed.";
+        }
+        request.setAttribute("mess", mess);
+        try {
+            request.getRequestDispatcher("view/employee/edit.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -60,7 +94,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("mess", mess);
         request.setAttribute("check", check);
         try {
-            request.getRequestDispatcher("employee/create.jsp").forward(request,response);
+            request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -108,7 +142,7 @@ public class EmployeeServlet extends HttpServlet {
             employees = iEmployeeService.findEmployeeByName(name);
             request.setAttribute("employeeList",employees);
             try {
-                request.getRequestDispatcher("/employee/list.jsp").forward(request,response);
+                request.getRequestDispatcher("view/employee/list.jsp").forward(request,response);
             } catch (ServletException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -135,7 +169,7 @@ public class EmployeeServlet extends HttpServlet {
         Employee employee = iEmployeeService.findEmployeeByID(id);
         request.setAttribute("employee",employee);
         try {
-            request.getRequestDispatcher("/employee/edit.jsp").forward(request,response);
+            request.getRequestDispatcher("view/employee/edit.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -145,7 +179,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("/employee/create.jsp").forward(request,response);
+            request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -157,7 +191,7 @@ public class EmployeeServlet extends HttpServlet {
         List<Employee> employeeList = iEmployeeService.findAll();
         request.setAttribute("employeeList",employeeList);
         try {
-            request.getRequestDispatcher("employee/list.jsp").forward(request,response);
+            request.getRequestDispatcher("view/employee/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

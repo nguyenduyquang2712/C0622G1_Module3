@@ -1,14 +1,21 @@
 package controller;
 
+import model.Facility;
+import service.IFacilityService;
+import service.impl.FacilityService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ServiceServlet", urlPatterns = "/service")
 public class ServiceServlet extends HttpServlet {
+   private static IFacilityService iFacilityService = new FacilityService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -62,6 +69,9 @@ public class ServiceServlet extends HttpServlet {
     }
 
     private void listService(HttpServletRequest request, HttpServletResponse response) {
+        List<Facility> facilityList = new ArrayList<>();
+        facilityList = iFacilityService.findAll();
+        request.setAttribute();
         try {
             request.getRequestDispatcher("facility/list.jsp").forward(request,response);
         } catch (ServletException e) {

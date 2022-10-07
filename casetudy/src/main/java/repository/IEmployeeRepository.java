@@ -13,4 +13,6 @@ public interface IEmployeeRepository {
 
     List<Employee> findEmployeeByName(String name);
     Employee findEmployeeByID(int id);
+
+    boolean edit(Employee employee);
 }

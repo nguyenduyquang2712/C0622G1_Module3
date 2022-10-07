@@ -34,5 +34,10 @@ public class EmployeeService implements IEmployeeService {
         return iEmployeeRepository.findEmployeeByID(id);
     }
 
+    @Override
+    public boolean edit(Employee employee) {
+        return iEmployeeRepository.edit(employee);
+    }
+
 
 }

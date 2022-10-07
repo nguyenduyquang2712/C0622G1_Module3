@@ -17,10 +17,10 @@ public class EmployeeRepository implements IEmployeeRepository {
             "salary, phone_number, email, address, position_id, education_degree_id, " +
             "division_id) values(?,?,?,?,?,?,?,?,?,?);";
     private static final String FIND_BY_ID = "select * from employee where id = ? and status=1 ;";
-    private static final String UPDATE = "update employee set employee_name = ?, employee_birthday = ?, " +
-            "employee_id_card = ?, employee_salary = ?, employee_phone = ?, employee_email = ?, " +
-            "employee_address = ?, position_id = ?, education_degree_id = ?, division_id = ? where employee_id = ? and " +
-            "is_delete = 0;";
+    private static final String UPDATE = "update employee set name = ?, date_of_birth = ?, " +
+            "id_card = ?, salary = ?, phone_number = ?, email = ?, " +
+            "address = ?, position_id = ?, education_degree_id = ?, division_id = ? where id = ? and " +
+            "status = 1;";
     private static final String DELETE = "update employee set status = 0 where id = ? ";
     private static final String SEARCH = "select * from employee where is_delete = 0 and employee_name like ? and " +
             "employee_address like ? and employee_phone like ?;";
@@ -106,8 +106,8 @@ public class EmployeeRepository implements IEmployeeRepository {
     public List<Employee> findEmployeeByName(String name) {
         List<Employee> employeeList = findAll();
         List<Employee> employeefinded = new ArrayList<>();
-        for(Employee employee: employeeList){
-            if(employee.getEmployeeName().contains(name)){
+        for (Employee employee : employeeList) {
+            if (employee.getEmployeeName().contains(name)) {
                 employeefinded.add(employee);
             }
         }
@@ -126,23 +126,51 @@ public class EmployeeRepository implements IEmployeeRepository {
             while (resultSet.next()) {
                 int employeeId = resultSet.getInt("id");
                 String employeeName = resultSet.getString("name");
-                String employeeBirthday = resultSet.getString("date_of_birthday");
+                String employeeBirthday = resultSet.getString("date_of_birth");
                 String employeeIdCard = resultSet.getString("id_card");
                 double employeeSalary = resultSet.getInt("salary");
-                String employeePhone = resultSet.getString("phone");
+                String employeePhone = resultSet.getString("phone_number");
                 String employeeEmail = resultSet.getString("email");
                 String employeeAddress = resultSet.getString("address");
                 int positionId = resultSet.getInt("position_id");
                 int educationDegreeId = resultSet.getInt("education_degree_id");
                 int divisionId = resultSet.getInt("division_id");
 
-              employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary,
+                employee = new Employee(employeeId, employeeName, employeeBirthday, employeeIdCard, employeeSalary,
                         employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return employee;
+    }
+
+    @Override
+    public boolean edit(Employee employee) {
+        boolean rowUpdated = false;
+        Connection connection = BaseRepository.getConnectDB();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+
+            preparedStatement.setString(1, employee.getEmployeeName());
+            preparedStatement.setString(2, employee.getEmployeeBirthday());
+            preparedStatement.setString(3, employee.getEmployeeIdCard());
+            preparedStatement.setDouble(4, employee.getEmployeeSalary());
+            preparedStatement.setString(5, employee.getEmployeePhone());
+            preparedStatement.setString(6, employee.getEmployeeEmail());
+            preparedStatement.setString(7, employee.getEmployeeAddress());
+            preparedStatement.setInt(8, employee.getPositionId());
+            preparedStatement.setInt(9, employee.getEducationDegreeId());
+            preparedStatement.setInt(10, employee.getDivisionId());
+            preparedStatement.setInt(11, employee.getEmployeeId());
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rowUpdated;
     }
 
 }
