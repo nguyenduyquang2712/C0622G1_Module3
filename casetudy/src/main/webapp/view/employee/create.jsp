@@ -36,7 +36,7 @@
             <tr>
                 <th>Employee Date Of Birth:</th>
                 <td>
-                    <input type="text" name="dateOfBirth" id="dateofbirth" size="30"/>
+                    <input type="date" name="dateOfBirth" id="dateofbirth" size="30"/>
                 </td>
             </tr>
             <tr>

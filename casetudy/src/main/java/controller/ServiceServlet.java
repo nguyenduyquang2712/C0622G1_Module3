@@ -30,15 +30,7 @@ public class ServiceServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                if(type.equals("villa")){
-                    showNewFormVilla(request,response);
-                }
-                if(type.equals("room")){
-                    showNewFormRoom(request,response);
-                }
-                if(type.equals("house")){
-                    showNewFormHouse(request,response);
-                }
+                    showNewForm(request,response);
                 break;
             case "edit":
                 break;
@@ -52,28 +44,24 @@ public class ServiceServlet extends HttpServlet {
         }
     }
 
-    private void showNewFormHouse(HttpServletRequest request, HttpServletResponse response) {
-    }
-
-    private void showNewFormRoom(HttpServletRequest request, HttpServletResponse response) {
-    }
-
-    private void showNewFormVilla(HttpServletRequest request, HttpServletResponse response) {
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("facility/createvilla.jsp").forward(request,response);
+            request.getRequestDispatcher("view/facility/create.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 
     private void listService(HttpServletRequest request, HttpServletResponse response) {
         List<Facility> facilityList = new ArrayList<>();
         facilityList = iFacilityService.findAll();
-        request.setAttribute();
+        request.setAttribute("facilityList",facilityList);
         try {
-            request.getRequestDispatcher("facility/list.jsp").forward(request,response);
+            request.getRequestDispatcher("view/facility/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
