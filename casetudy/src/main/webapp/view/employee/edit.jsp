@@ -66,65 +66,25 @@
             </tr>
             <tr>
             <th>Employee Education_Degree:</th>
-                <c:if test="${employee.educationDegreeId==1}">
                 <td>
                     <select name="education">
-                        <option value="1" selected>Trung Cấp</option>
-                        <option value="2">Cao Đẳng</option>
-                        <option value="3">Đại Học</option>
-                        <option value="4">Sau Đại Học</option>
+                        <option value="1" ${employee.educationDegreeId==1?"selected":""}>Trung Cấp</option>
+                        <option value="2" ${employee.educationDegreeId==2?"selected":""}>Cao Đẳng</option>
+                        <option value="3" ${employee.educationDegreeId==3?"selected":""}>Đại Học</option>
+                        <option value="4" ${employee.educationDegreeId==4?"selected":""}>Sau Đại Học</option>
                     </select>
                 </td>
-                </c:if>
-                <c:if test="${employee.educationDegreeId==2}">
-                    <td>
-                        <select name="education">
-                            <option value="1" >Trung Cấp</option>
-                            <option value="2" selected>Cao Đẳng</option>
-                            <option value="3">Đại Học</option>
-                            <option value="4">Sau Đại Học</option>
-                        </select>
-                    </td>
-                </c:if>
-                <c:if test="${employee.educationDegreeId==3}">
-                    <td>
-                        <select name="education">
-                            <option value="1" >Trung Cấp</option>
-                            <option value="2" >Cao Đẳng</option>
-                            <option value="3" selected>Đại Học</option>
-                            <option value="4">Sau Đại Học</option>
-                        </select>
-                    </td>
-                </c:if>
-                <c:if test="${employee.educationDegreeId==4}">
-                    <td>
-                        <select name="education">
-                            <option value="1" selected>Trung Cấp</option>
-                            <option value="2">Cao Đẳng</option>
-                            <option value="3" >Đại Học</option>
-                            <option value="4" selected>Sau Đại Học</option>
-                        </select>
-                    </td>
-                </c:if>
+
+
         </tr>
             <tr>
                 <th>Employee Position:</th>
-                <c:if test="${employee.positionId==1}">
                 <td>
                     <select name="position">
-                        <option value="1" selected>Quản Lý</option>
-                        <option value="2">Nhân Viên</option>
+                        <option value="1" ${employee.positionId==1?"selected":""}>Quản Lý</option>
+                        <option value="2" ${employee.positionId==2?"selected":""}>Nhân Viên</option>
                     </select>
                 </td>
-                </c:if>
-                <c:if test="${employee.positionId==2}">
-                    <td>
-                        <select name="position">
-                            <option value="1" >Quản Lý</option>
-                            <option value="2" selected>Nhân Viên</option>
-                        </select>
-                    </td>
-                </c:if>
             </tr>
             <tr>
                 <th>Employee Salary:</th>
@@ -134,46 +94,14 @@
             </tr>
             <tr>
                 <th>Employee Division:</th>
-                <c:if test="${employee.divisionId==1}">
                 <td>
                     <select name="division">
-                        <option value="1" selected>Sale-Marketing</option>
-                        <option value="2">Hành Chính</option>
-                        <option value="3">Phục Vụ</option>
-                        <option value="4">Quản Lý</option>
+                        <option value="1"${employee.divisionId==1?"selected":""}>Sale-Marketing</option>
+                        <option value="2"${employee.divisionId==2?"selected":""}>Hành Chính</option>
+                        <option value="3"${employee.divisionId==3?"selected":""}>Phục Vụ</option>
+                        <option value="4"${employee.divisionId==4?"selected":""}>Quản Lý</option>
                     </select>
                 </td>
-                </c:if>
-                <c:if test="${employee.divisionId==2}">
-                    <td>
-                        <select name="division">
-                            <option value="1" >Sale-Marketing</option>
-                            <option value="2" selected>Hành Chính</option>
-                            <option value="3">Phục Vụ</option>
-                            <option value="4">Quản Lý</option>
-                        </select>
-                    </td>
-                </c:if>
-                <c:if test="${employee.divisionId==3}">
-                    <td>
-                        <select name="division">
-                            <option value="1" >Sale-Marketing</option>
-                            <option value="2" >Hành Chính</option>
-                            <option value="3" selected>Phục Vụ</option>
-                            <option value="4">Quản Lý</option>
-                        </select>
-                    </td>
-                </c:if>
-                <c:if test="${employee.divisionId==4}">
-                    <td>
-                        <select name="division">
-                            <option value="1" >Sale-Marketing</option>
-                            <option value="2">Hành Chính</option>
-                            <option value="3" >Phục Vụ</option>
-                            <option value="4" selected>Quản Lý</option>
-                        </select>
-                    </td>
-                </c:if>
             </tr>
             <tr>
                 <td colspan="2" align="center">

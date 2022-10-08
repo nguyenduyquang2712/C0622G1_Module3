@@ -45,14 +45,9 @@
                 <th>Customer gender:</th>
                 <td>
                     <%--                    <input type="text" name="gender" id="gender" size="45" value="${customer.customerGender}"/>--%>
-                    <c:if test="${customer.customerGender==0}">
-                        <input name="gender" type="radio" value="1">Nam
-                        <input name="gender" type="radio" value="0" checked>Nữ
-                    </c:if>
-                    <c:if test="${customer.customerGender==1}">
-                        <input name="gender" type="radio" value="1" checked>Nam
-                        <input name="gender" type="radio" value="0">Nữ
-                    </c:if>
+                        <input name="gender" type="radio" value="1" ${customer.customerGender==1?"checked":""}>Nam
+                        <input name="gender" type="radio" value="0" ${customer.customerGender==0?"checked":""}>Nữ
+
                 </td>
             </tr>
             <tr>
@@ -85,51 +80,13 @@
                 <td>
                     <%--                    <input type="text" name="customerType" id="customerType" size="45"--%>
                     <%--                           value="${customer.customerTypeId}"/>--%>
-                    <c:if test="${customer.customerTypeId == 1}">
                         <select name="customerType">
-                            <option value="1" selected>Diamond</option>
-                            <option value="2">Platinium</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Silver</option>
-                            <option value="5">Member</option>
+                            <option value="1" ${customer.customerTypeId == 1?"selected":""}>Diamond</option>
+                            <option value="2"${customer.customerTypeId == 2?"selected":""}>Platinium</option>
+                            <option value="3"${customer.customerTypeId == 3?"selected":""}>Gold</option>
+                            <option value="4"${customer.customerTypeId == 4?"selected":""}>Silver</option>
+                            <option value="5"${customer.customerTypeId == 5?"selected":""}>Member</option>
                         </select>
-                    </c:if>
-                    <c:if test="${customer.customerTypeId == 2}">
-                        <select name="customerType">
-                            <option value="1" >Diamond</option>
-                            <option value="2" selected>Platinium</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Silver</option>
-                            <option value="5">Member</option>
-                        </select>
-                    </c:if>
-                    <c:if test="${customer.customerTypeId == 3}">
-                        <select name="customerType">
-                            <option value="1" >Diamond</option>
-                            <option value="2">Platinium</option>
-                            <option value="3" selected>Gold</option>
-                            <option value="4">Silver</option>
-                            <option value="5">Member</option>
-                        </select>
-                    </c:if>
-                    <c:if test="${customer.customerTypeId == 4}">
-                        <select name="customerType">
-                            <option value="1" >Diamond</option>
-                            <option value="2">Platinium</option>
-                            <option value="3">Gold</option>
-                            <option value="4"selected>Silver</option>
-                            <option value="5">Member</option>
-                        </select>
-                    </c:if>
-                    <c:if test="${customer.customerTypeId == 5}">
-                        <select name="customerType">
-                            <option value="1" >Diamond</option>
-                            <option value="2">Platinium</option>
-                            <option value="3">Gold</option>
-                            <option value="4">Silver</option>
-                            <option value="5"selected>Member</option>
-                        </select>
-                    </c:if>
 
                 </td>
             </tr>

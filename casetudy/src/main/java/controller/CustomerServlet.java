@@ -123,8 +123,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id_deleted = Integer.parseInt(request.getParameter("id"));
-        iCustomerService.delete(id_deleted);
+        int deletedID = Integer.parseInt(request.getParameter("id"));
+        iCustomerService.delete(deletedID);
         try {
             response.sendRedirect("/customer");
         } catch (IOException e) {

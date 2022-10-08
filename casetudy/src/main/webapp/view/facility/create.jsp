@@ -27,7 +27,7 @@
             <tr>
                 <th>Service Name:</th>
                 <td>
-                    <input type="text" name="nameService" id="nameService" size="45" />
+                    <input type="text" name="nameService" id="nameService" size="30" />
                 </td>
             </tr>
 
@@ -52,25 +52,25 @@
             <tr>
                 <th>Max People:</th>
                 <td>
-                    <input type="text" name="maxPeople" id="maxPeople" size="45"/>
+                    <input type="text" name="maxPeople" id="maxPeople" size="30"/>
                 </td>
             </tr>
             <tr>
                 <th>Rent_type_id:</th>
                 <td>
-                    <input type="text" name="rent_type_id" id="rent_type_id" size="45"/>
+                    <input type="text" name="rent_type_id" id="rent_type_id" size="30"/>
                 </td>
             </tr>
             <tr>
                 <th>facility_type_id:</th>
                 <td>
-                    <input type="text" name="facility_type_id" id="facility_type_id" size="45"/>
+                    <input type="text" name="facility_type_id" id="facility_type_id" size="30"/>
                 </td>
             </tr>
             <tr>
                 <th>Description_other_convenience:</th>
                 <td>
-                    <input type="text" name="description_other_convenience" id="description_other_convenience" size="45"/>
+                    <input type="text" name="description_other_convenience" id="description_other_convenience" size="30"/>
                 </td>
             </tr>
             <tr>
