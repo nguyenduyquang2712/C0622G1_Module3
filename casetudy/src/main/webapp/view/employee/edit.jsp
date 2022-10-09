@@ -31,19 +31,19 @@
             <tr>
                 <th>Employee Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" value="${employee.employeeName}">
+                    <input type="text" name="name" id="name" size="45" value="${employee.employeeName}" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*" >
                 </td>
             </tr>
             <tr>
                 <th>Employee Employee Date Of Birth:</th>
                 <td>
-                    <input type="text" name="date" id="date" size="45" value="${employee.employeeBirthday}">
+                    <input type="text" name="date" id="date" size="45" value="${employee.employeeBirthday}" pattern="\d\d[/]\d\d[/]\d{4}">
                 </td>
             </tr>
             <tr>
                 <th>Employee Employee ID Card:</th>
                 <td>
-                    <input type="text" name="idCard" id="idCard" size="45" value="${employee.employeeIdCard}">
+                    <input type="text" name="idCard" id="idCard" size="45" value="${employee.employeeIdCard}" pattern="(\d{9}|\d{12})">
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
             <tr>
                 <th>Employee Email:</th>
                 <td>
-                    <input type="text" name="email" id="email" size="45" value="${employee.employeeEmail}">
+                    <input type="text" name="email" id="email" size="45" value="${employee.employeeEmail}" pattern="[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)">
                 </td>
             </tr>
             <tr>

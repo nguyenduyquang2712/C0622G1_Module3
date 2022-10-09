@@ -29,20 +29,20 @@
             <tr>
                 <th>Employee Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" />
+                    <input type="text" name="name" id="name" size="45" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*" />
                 </td>
             </tr>
 
             <tr>
                 <th>Employee Date Of Birth:</th>
                 <td>
-                    <input type="date" name="dateOfBirth" id="dateofbirth" size="30"/>
+                    <input type="date" name="dateOfBirth" id="dateofbirth" size="30" pattern="\d\d[/]\d\d[/]\d{4}"/>
                 </td>
             </tr>
             <tr>
                 <th>Employee ID Card:</th>
                 <td>
-                    <input type="text" name="idCard" id="idcard" size="30"/>
+                    <input type="text" name="idCard" id="idcard" size="30" pattern="(\d{9}|\d{12})"/>
                 </td>
             </tr>
             <tr>
@@ -54,7 +54,7 @@
             <tr>
                 <th>Employee Email:</th>
                 <td>
-                    <input type="text" name="email" id="email" size="45"/>
+                    <input type="text" name="email" id="email" size="45" pattern="[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)"/>
                 </td>
             </tr>
             <tr>

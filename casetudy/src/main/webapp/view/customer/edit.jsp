@@ -31,14 +31,14 @@
             <tr>
                 <th>Customer Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" value="${customer.customerName}"/>
+                    <input type="text" name="name" id="name" size="45" value="${customer.customerName}" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*"/>
                 </td>
             </tr>
 
             <tr>
                 <th>Customer Customer Date Of Birth:</th>
                 <td>
-                    <input type="text" name="dateOfBirth" id="date" size="45" value="${customer.customerBirthday}"/>
+                    <input type="text" name="dateOfBirth" id="date" size="45" value="${customer.customerBirthday}" pattern="\d\d[/-]\d\d[/-]\d{4}"/>
                 </td>
             </tr>
             <tr>
@@ -53,7 +53,7 @@
             <tr>
                 <th>Customer Customer ID Card:</th>
                 <td>
-                    <input type="text" name="idCard" id="idCard" size="45" value="${customer.customerIdCard}"/>
+                    <input type="text" name="idCard" id="idCard" size="45" value="${customer.customerIdCard}" pattern="(\d{9}|\d{12})"/>
                 </td>
             </tr>
             <tr>
@@ -65,7 +65,7 @@
             <tr>
                 <th>Customer Email:</th>
                 <td>
-                    <input type="text" name="email" id="email" size="45" value="${customer.customerEmail}"/>
+                    <input type="text" name="email" id="email" size="45" value="${customer.customerEmail}" pattern="[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)"/>
                 </td>
             </tr>
 

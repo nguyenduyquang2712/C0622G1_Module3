@@ -37,7 +37,7 @@
     <table id="tablecustomer" class="table table-dark table-hover" style="width:100%" border="1" cellpadding="5">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>STT</th>
             <th>Name</th>
             <th>Date_Of_Birth</th>
             <th>Gender</th>
@@ -51,12 +51,11 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="customer" items="${customerList}">
+        <c:forEach var="customer" items="${customerList}" varStatus="loop">
         <tr>
-            <td><c:out value="${customer.customerId}"/></td>
+            <td><c:out value="${loop.count}"/></td>
             <td><c:out value="${customer.customerName}"/></td>
             <td><c:out value="${customer.customerBirthday}"/></td>
-             <%--=<td><c:out value="${customer.customerGender}"/></td>--%>
             <c:if test="${customer.customerGender ==1 }">
                 <td>Nam</td>
             </c:if>
@@ -67,7 +66,6 @@
             <td><c:out value="${customer.customerPhone}"/></td>
             <td><c:out value="${customer.customerEmail}"/></td>
             <td><c:out value="${customer.customerAddress}"/></td>
-            <%--<td><c:out value="${customer.customerTypeId}"/></td>--%>
             <c:if test="${customer.customerTypeId==1}">
                 <td>Diamond</td>
             </c:if>

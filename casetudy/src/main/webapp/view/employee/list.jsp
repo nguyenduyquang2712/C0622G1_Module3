@@ -37,7 +37,7 @@
     <table id="tableemployee" class="table table-dark table-hover" style="width:100%" border="1" cellpadding="5">
         <thead>
         <tr>
-            <th>ID</th>
+            <th>STT</th>
             <th>Name</th>
             <th>Date_Of_Birth</th>
             <th>ID_Card</th>
@@ -53,17 +53,15 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="employee" items="${employeeList}">
+        <c:forEach var="employee" items="${employeeList}" varStatus="loop">
             <tr>
-                <td><c:out value="${employee.employeeId}"/></td>
+                <td><c:out value="${loop.count}"/></td>
                 <td><c:out value="${employee.employeeName}"/></td>
                 <td><c:out value="${employee.employeeBirthday}"/></td>
                 <td><c:out value="${employee.employeeIdCard}"/></td>
                 <td><c:out value="${employee.employeePhone}"/></td>
                 <td><c:out value="${employee.employeeEmail}"/></td>
                 <td><c:out value="${employee.employeeAddress}"/></td>
-                    <%--<td><c:out value="${employee.educationDegreeId}"/></td>--%>
-
                 <c:if test="${employee.educationDegreeId == 1}">
                     <td>Trung Cấp</td>
                 </c:if>
@@ -76,14 +74,12 @@
                 <c:if test="${employee.educationDegreeId == 4}">
                     <td>Sau Đại Học</td>
                 </c:if>
-<%--                <td><c:out value="${employee.positionId}"/></td>--%>
                 <c:if test="${employee.positionId==1}">
                     <td>Quản Lý</td>
                 </c:if>
                 <c:if test="${employee.positionId==2}">
                     <td>Nhân Viên</td>
                 </c:if>
-<%--                <td><c:out value="${employee.divisionId}"/></td>--%>
                 <c:if test="${employee.divisionId==1}">
                     <td>
                         Sale-Marketing

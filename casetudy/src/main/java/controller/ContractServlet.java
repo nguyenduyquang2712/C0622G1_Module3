@@ -35,7 +35,7 @@ public class ContractServlet extends HttpServlet {
 
     private void listContract(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("contract/list.jsp").forward(request,response);
+            request.getRequestDispatcher("view/contract/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
