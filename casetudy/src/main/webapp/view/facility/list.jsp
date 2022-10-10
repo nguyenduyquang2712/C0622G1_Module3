@@ -33,9 +33,9 @@
                     Add Facility
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/service?action=create&type=${1}">Room</a></li>
+                    <li><a class="dropdown-item" href="/service?action=create&type=${1}">Villa</a></li>
                     <li><a class="dropdown-item" href="/service?action=create&type=${2}">House</a></li>
-                    <li><a class="dropdown-item" href="/service?action=create&type=${3}">Villa</a></li>
+                    <li><a class="dropdown-item" href="/service?action=create&type=${3}">Room</a></li>
                 </ul>
             </li>
         </div>

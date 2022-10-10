@@ -27,14 +27,15 @@
                 <tr>
                     <th>Customer Name:</th>
                     <td>
-                        <input type="text" name="name" id="name" size="45" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*" />
+                        <input type="text" name="name" id="name" size="45" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*"
+                        title="tham hoa ve lo"/>
                     </td>
                 </tr>
 
                 <tr>
                     <th>Customer Date Of Birth:</th>
                     <td>
-                        <input type="text" name="dateOfBirth" id="dateofbirth" size="30" pattern="\d\d[/-]\d\d[/-]\d{4}"/>
+                        <input type="date" name="dateOfBirth" id="dateofbirth" size="30" required/>
                     </td>
                 </tr>
                 <tr>

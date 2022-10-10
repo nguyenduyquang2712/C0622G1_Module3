@@ -26,6 +26,7 @@
             <caption>
                 <h2>Edit Service</h2>
             </caption>
+            <input type="hidden" name="type" value="${type}">
             <input type="text" name="id" size="30" value="${facility.facilityId}" hidden />
             <tr>
                 <th>Service Name:</th>
@@ -63,7 +64,7 @@
                    </select>
                 </td>
             </tr>
-            <c:if test="${type==1}">
+            <c:if test="${type==3}">
 
                 <input type="text" name="facility_type_id"  size="30" value="3" hidden/>
 
@@ -71,12 +72,12 @@
             <c:if test="${type==2}">
                 <input type="text" name="facility_type_id"  size="30" value="2" hidden/>
             </c:if>
-            <c:if test="${type==3 }">
+            <c:if test="${type==1 }">
 
                 <input type="text" name="facility_type_id"  size="30" value="1" hidden/>
 
             </c:if>
-            <c:if test="${type==2 or type==3}">
+            <c:if test="${type==2 or type==1}">
                 <tr>
                     <th>Standard Room:</th>
                     <td>
@@ -97,7 +98,7 @@
                     </td>
                 </tr>
             </c:if>
-            <c:if test="${type==3}">
+            <c:if test="${type==1}">
                 <tr>
                     <th>pool_area:</th>
                     <td>
@@ -105,10 +106,10 @@
                     </td>
                 </tr>
             </c:if>
-            <c:if test="${type!=3}">
+            <c:if test="${type!=1}">
                 <input type="text" name="pool_area"  size="30" value="0" hidden/>
             </c:if>
-            <c:if test="${type==1}">
+            <c:if test="${type==3}">
                 <tr>
                     <th>facility_free:</th>
                     <td>
@@ -124,7 +125,7 @@
                     <input type="hidden" name="number_of_floors"  size="30" value="0" hidden/>
                 </tr>
             </c:if>
-            <c:if test="${type!=1}">
+            <c:if test="${type!=5}">
                 <td>
                     <input  type="text" name="facility_free"  size="30" value="" hidden />
                 </td>

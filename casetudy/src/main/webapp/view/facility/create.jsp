@@ -29,7 +29,7 @@
             <tr>
                 <th>Service Name:</th>
                 <td>
-                    <input type="text" name="nameService" size="30" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*" />
+                    <input type="text" name="nameService" size="30" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*"/>
                 </td>
             </tr>
 
@@ -55,10 +55,14 @@
             <tr>
                 <th>Rent_type:</th>
                 <td>
-                    <input type="text" name="rent_type_id"  size="30"/>
+                    <select name="rent_type_id">
+                        <c:forEach var="rentType" items="${rentType}">
+                            <option value="${rentType.key}" }>${rentType.value}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
-            <c:if test="${type==1}">
+            <c:if test="${type==3}">
 
                     <input type="text" name="facility_type_id"  size="30" value="3" hidden/>
 
@@ -66,12 +70,12 @@
             <c:if test="${type==2}">
                         <input type="text" name="facility_type_id"  size="30" value="2" hidden/>
             </c:if>
-            <c:if test="${type==3 }">
+            <c:if test="${type==1 }">
 
                         <input type="text" name="facility_type_id"  size="30" value="1" hidden/>
 
             </c:if>
-            <c:if test="${type==2 or type==3}">
+            <c:if test="${type==2 or type==1}">
             <tr>
                 <th>Standard Room:</th>
                 <td>
@@ -92,7 +96,7 @@
                 </td>
             </tr>
             </c:if>
-            <c:if test="${type==3}">
+            <c:if test="${type==1}">
                 <tr>
                     <th>pool_area:</th>
                     <td>
@@ -100,10 +104,10 @@
                     </td>
                 </tr>
             </c:if>
-            <c:if test="${type!=3}">
+            <c:if test="${type!=1}">
                 <input type="text" name="pool_area"  size="30" value="0" hidden/>
             </c:if>
-            <c:if test="${type==1}">
+            <c:if test="${type==3}">
             <tr>
                 <th>facility_free:</th>
                 <td>
@@ -119,10 +123,8 @@
                 <input type="hidden" name="number_of_floors"  size="30" value="0" hidden/>
             </tr>
             </c:if>
-            <c:if test="${type!=1}">
-                    <td>
+            <c:if test="${type!=3}">
                         <input  type="text" name="facility_free"  size="30" value="" hidden />
-                    </td>
             </c:if>
             <tr>
                 <td colspan="2" align="center">
