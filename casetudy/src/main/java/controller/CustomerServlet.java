@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -173,8 +175,11 @@ public class CustomerServlet extends HttpServlet {
 
     private void listCustomer(HttpServletRequest request, HttpServletResponse response) {
         List<Customer> customerList = new ArrayList<>();
+        Map<Integer,String> mapCustomerType = new HashMap<>();
         customerList = iCustomerService.findAll();
+        mapCustomerType = iCustomerService.findAllCustomerType();
         request.setAttribute("customerList",customerList);
+        request.setAttribute("mapCustomerType",mapCustomerType);
         try {
             request.getRequestDispatcher("view/customer/list.jsp").forward(request,response);
         } catch (ServletException e) {

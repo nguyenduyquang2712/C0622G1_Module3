@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerRepository implements ICustomerRepository {
     private static final String SELECT_ALL_CUSTOMER = "SELECT * FROM customer where status=1;";
@@ -20,7 +22,7 @@ public class CustomerRepository implements ICustomerRepository {
             "gender = ?, id_card = ?, phone_number = ?,email = ?, " +
             "address = ?, customer_type_id = ? where id = ? and status = 1;";
     private static final String FIND_CUSTOMER = "SELECT * FROM customer WHERE name like ? and status=1;";
-
+    private static final String SELECT_ALL_CUSTOMERTYPE="SELECT * FROM customer_type;";
     @Override
     public List<Customer> findAll() {
         List<Customer> customers = new ArrayList<>();
@@ -157,4 +159,21 @@ public class CustomerRepository implements ICustomerRepository {
         }
         return rowUpdated;
     }
+
+    @Override
+    public Map<Integer, String> findAllCustomerType() {
+        Map<Integer,String> mapCustomerType = new HashMap<>();
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CUSTOMERTYPE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                mapCustomerType.put(resultSet.getInt("id"),resultSet.getString("name"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return mapCustomerType;
+    }
+
 }

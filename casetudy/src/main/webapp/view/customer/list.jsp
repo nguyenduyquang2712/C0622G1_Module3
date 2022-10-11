@@ -66,21 +66,7 @@
             <td><c:out value="${customer.customerPhone}"/></td>
             <td><c:out value="${customer.customerEmail}"/></td>
             <td><c:out value="${customer.customerAddress}"/></td>
-            <c:if test="${customer.customerTypeId==1}">
-                <td>Diamond</td>
-            </c:if>
-            <c:if test="${customer.customerTypeId==2}">
-                <td>Platinium</td>
-            </c:if>
-            <c:if test="${customer.customerTypeId==3}">
-                <td>Gold</td>
-            </c:if>
-            <c:if test="${customer.customerTypeId==4}">
-                <td>Silver</td>
-            </c:if>
-            <c:if test="${customer.customerTypeId==5}">
-                <td>Member</td>
-            </c:if>
+            <td><c:out value="${mapCustomerType.get(customer.customerTypeId)}"/></td>
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#edit${customer.customerId}">

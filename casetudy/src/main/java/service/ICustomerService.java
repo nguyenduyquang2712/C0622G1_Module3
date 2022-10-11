@@ -3,6 +3,7 @@ package service;
 import model.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ICustomerService {
     List<Customer> findAll();
@@ -15,4 +16,6 @@ public interface ICustomerService {
     Customer findCustomerByID(int id);
 
     boolean edit(Customer customer);
+
+    Map<Integer, String> findAllCustomerType();
 }

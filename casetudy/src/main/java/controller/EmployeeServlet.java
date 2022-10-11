@@ -1,5 +1,6 @@
 package controller;
 
+import model.Customer;
 import model.Employee;
 import service.IEmployeeService;
 import service.impl.EmployeeService;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "EmployeeServlet", urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
@@ -73,6 +76,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void createEmployee(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, String> mapError = new HashMap<>();
         String name = request.getParameter("name");
         String dayOfBirth = request.getParameter("dateOfBirth");
         String idCard = request.getParameter("idCard");
@@ -85,21 +89,34 @@ public class EmployeeServlet extends HttpServlet {
         int divisionId = Integer.parseInt(request.getParameter("divisionId"));
         Employee employee = new Employee(name, dayOfBirth, idCard, salary, phone, email, address, position,
                 educationDegree, divisionId);
-        boolean check = iEmployeeService.create(employee);
-        String mess = "Add new Employee successfully.";
-        if (!check) {
-            mess = "Add new Employee failed.";
+        mapError = iEmployeeService.create(employee);
+        if(mapError.size()!=0){
+            request.setAttribute("mess","Add new failure");
+            request.setAttribute("map", mapError);
+            request.setAttribute("employee",employee);
+            try {
+                request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            try {
+                response.sendRedirect("/employee");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        request.setAttribute("mess", mess);
-        request.setAttribute("check", check);
-        try {
-            request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            request.getRequestDispatcher("view/employee/create.jsp").forward(request,response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -129,28 +146,22 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void searchEmployee(HttpServletRequest request, HttpServletResponse response) {
-        List<Employee> employees = new ArrayList<>();
-        String name = request.getParameter("name");
-        if(name.equals("")){
-            try {
-                response.sendRedirect("/employee");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        String name = request.getParameter("searchName");
+        String email= request.getParameter("searchEmail");
+        String divisionType = request.getParameter("divisionType");
+        List<Employee> employeeList = iEmployeeService.searchEmployee(name,email,divisionType);
+        Map<Integer,String> mapDivision = iEmployeeService.findDivision();
+        request.setAttribute("employeeList",employeeList);
+        request.setAttribute("mapDivision",mapDivision);
+        try {
+            request.getRequestDispatcher("view/employee/list.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else{
-            employees = iEmployeeService.findEmployeeByName(name);
-            request.setAttribute("employeeList",employees);
-            try {
-                request.getRequestDispatcher("view/employee/list.jsp").forward(request,response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
+
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
         int idDelete = Integer.parseInt(request.getParameter("id"));
@@ -189,7 +200,10 @@ public class EmployeeServlet extends HttpServlet {
 
     private void listEmployee(HttpServletRequest request, HttpServletResponse response) {
         List<Employee> employeeList = iEmployeeService.findAll();
+        Map<Integer,String> mapDivision = iEmployeeService.findDivision();
+
         request.setAttribute("employeeList",employeeList);
+        request.setAttribute("mapDivision",mapDivision);
         try {
             request.getRequestDispatcher("view/employee/list.jsp").forward(request,response);
         } catch (ServletException e) {

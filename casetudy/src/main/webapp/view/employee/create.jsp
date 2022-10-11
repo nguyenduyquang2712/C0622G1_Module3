@@ -26,41 +26,69 @@
             <caption>
                 <h2>Add New Employee</h2>
             </caption>
+            <c:if test="${mess!=null}">
+                <p>${mess}</p>
+            </c:if>
             <tr>
                 <th>Employee Name:</th>
                 <td>
-                    <input type="text" name="name" id="name" size="45" pattern="\p{Lu}\p{Ll}+(\s\p{Lu}\p{Ll}+)*" />
+                    <input type="text" name="name" id="name" size="45" value="${employee.employeeName}" />
+                    <c:if test="${map.get('name')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('name')}</span>
+                    </c:if>
                 </td>
             </tr>
 
             <tr>
                 <th>Employee Date Of Birth:</th>
                 <td>
-                    <input type="date" name="dateOfBirth" id="dateofbirth" size="30" pattern="\d\d[/]\d\d[/]\d{4}"/>
+                    <input type="date" name="dateOfBirth" id="dateofbirth" size="30" value="${employee.employeeBirthday}" />
+                    <c:if test="${map.get('dateOfBirth')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('dateOfBirth')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Employee ID Card:</th>
                 <td>
-                    <input type="text" name="idCard" id="idcard" size="30" pattern="(\d{9}|\d{12})"/>
+                    <input type="text" name="idCard" id="idcard" size="30" value="${employee.employeeIdCard}" />
+                    <c:if test="${map.get('idCard')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('idCard')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Employee Phone:</th>
                 <td>
-                    <input type="text" name="phone" id="phone" size="30"/>
+                    <input type="text" name="phone" id="phone" size="30" value="${employee.employeePhone}"/>
+                    <c:if test="${map.get('phoneNumber')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('phoneNumber')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Employee Email:</th>
                 <td>
-                    <input type="text" name="email" id="email" size="45" pattern="[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)"/>
+                        <input type="text" name="email" id="email" size="45" value="${employee.employeeEmail}" />
+                    <c:if test="${map.get('email')!=null}">
+                        if test="${map.get('address')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('email')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <th>Employee Address:</th>
                 <td>
-                    <input type="text" name="address" id="address" size="45"/>
+                    <input type="text" name="address" id="address" size="45" value="${employee.employeeAddress}"/>
+                    <c:if test="${map.get('address')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('address')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>
@@ -87,7 +115,11 @@
             <tr>
                 <th>Employee Salary:</th>
                 <td>
-                    <input type="text" name="salary" id="salary" size="30"/>
+                    <input type="number" name="salary" id="salary" size="30" value="${employee.employeeSalary}" required/>
+                    <c:if test="${map.get('salary')!=null}">
+                        <br>
+                        <span style="color:red">${map.get('salary')}</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>

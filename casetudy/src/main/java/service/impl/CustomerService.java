@@ -6,6 +6,7 @@ import repository.impl.CustomerRepository;
 import service.ICustomerService;
 
 import java.util.List;
+import java.util.Map;
 
 public class CustomerService implements ICustomerService {
     private ICustomerRepository iCustomerRepository = new CustomerRepository();
@@ -38,4 +39,11 @@ public class CustomerService implements ICustomerService {
     public boolean edit(Customer customer) {
         return iCustomerRepository.edit(customer);
     }
+
+    @Override
+    public Map<Integer, String> findAllCustomerType() {
+        return iCustomerRepository.findAllCustomerType();
+    }
+
+
 }
